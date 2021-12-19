@@ -17,7 +17,7 @@ const ProductsSearch = () => {
 
 export default ProductsSearch
 
-const SearchStyles = {
+const SearchStyles: React.CSSProperties = {
     marginBottom: '20px',
-    marginTop: '50px'
+    marginTop: '50px',
 }

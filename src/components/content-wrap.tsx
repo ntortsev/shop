@@ -21,6 +21,6 @@ const ContentWrap = () => {
 
 export default ContentWrap
 
-const ContentStyles={
+const ContentStyles: React.CSSProperties = {
     padding: '50px 0px'
 }

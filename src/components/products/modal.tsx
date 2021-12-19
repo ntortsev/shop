@@ -55,11 +55,11 @@ const Image = styled.img`
     object-fit: cover;
 `
 
-const CardStyles = {
+const CardStyles: React.CSSProperties = {
     paddingBottom: '40px'
 }
 
-const ButtonStyles = {
+const ButtonStyles: React.CSSProperties = {
     position: 'absolute',
     bottom: 0,
     left: 0

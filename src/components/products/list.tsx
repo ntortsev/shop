@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const ProductsList = () => {
     const { Title } = Typography;
 
-    const handleClick = (e) => {
+    const handleClick = (e: React.MouseEvent) => {
         e.preventDefault();
     }
 

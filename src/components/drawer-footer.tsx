@@ -14,7 +14,7 @@ const DrawerFooter = () => {
 
     return (
         <div>
-            <Row align='center' justify='space-between'>
+            <Row justify='space-between'>
                 <Col>
                     <Title level={3}>
                     Total price: 

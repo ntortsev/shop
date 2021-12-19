@@ -44,13 +44,12 @@ const Logo = styled.div`
     user-select: none;
 `;
 
-const HeaderStyles = {
+const HeaderStyles: React.CSSProperties = {
     padding: 0,
     position: 'fixed',
     width: '100vw',
     zIndex: 15,
     paddingRight: '12px'
-    // right: '10px'
 }
 
 

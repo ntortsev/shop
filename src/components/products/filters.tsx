@@ -7,7 +7,7 @@ const ProductsFilters = () => {
 
     return (
         <Wrapper>
-            <Row justify='space-between' align='center'>
+            <Row justify='space-between'>
                 <Col>
                     <Radio.Group 
                     optionType='button' 
