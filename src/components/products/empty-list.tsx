@@ -1,5 +1,5 @@
 import React from 'react'
-import product from '../store/product'
+import product from '../../store/product'
 import styled from 'styled-components'
 import { Empty } from 'antd'
 import { ProductsListWrap } from './list'

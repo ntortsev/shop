@@ -1,7 +1,7 @@
 import { Radio } from 'antd'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import product from '../store/product'
+import product from '../../store/product'
 import { observer } from 'mobx-react-lite';
 import useParams from '../../hooks/use-params';
 import useFilters from '../../hooks/use-filters';

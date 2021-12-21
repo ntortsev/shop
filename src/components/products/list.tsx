@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import styled from 'styled-components'
-import product from '../store/product';
+import product from '../../store/product';
 import ProductsEmptyList from './empty-list';
 import ProductsItem from './item';
 
