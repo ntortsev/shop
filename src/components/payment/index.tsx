@@ -4,7 +4,7 @@ import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal';
 
 const Payment = () => {
-    const [isVisible, handleClose] = useModal('/payment', '/basket');
+    const [isVisible, handleClose] = useModal('/payment');
 
     const { Option } = Select;
 

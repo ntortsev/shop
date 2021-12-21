@@ -5,7 +5,7 @@ import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal'
 
 const Basket = () => {
-    const [isVisible, handleClose] = useModal('/basket', '/');
+    const [isVisible, handleClose] = useModal('/basket');
 
     return (
         <Drawer 

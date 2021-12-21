@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import useModal from '../../hooks/use-modal';
 
 const ProductsModal = () => {
-    const [isVisible, handleClose] = useModal('/product', '/');
+    const [isVisible, handleClose] = useModal('/product');
 
     const {Text} = Typography;
 
