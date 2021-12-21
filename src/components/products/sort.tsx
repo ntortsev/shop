@@ -1,0 +1,39 @@
+import { Select } from 'antd'
+import React from 'react'
+import { useLocation } from 'react-router-dom';
+import useFilters from '../../hooks/use-filters';
+import useParams from '../../hooks/use-params';
+
+const ProductsSort = () => {
+    const [activeOption, setActiveOption] = React.useState('none')
+    const location = useLocation()
+    const [sort] = useParams([ 'sort'])
+    const { Option } = Select;
+    const filters = useFilters()
+    
+    const handleChange = (e: string) => {
+        filters(e, 'sort')
+    } 
+
+    React.useEffect(() => {
+        const urls = ['/basket', '/product', '/payment']
+        if(!urls.includes(location.pathname)){
+            setActiveOption(sort ? sort : 'none')
+        }
+    }, [location.pathname, sort])
+
+
+    return (
+        <Select style={SelectWidth} value={activeOption} size='large' onChange={handleChange}>
+            <Option value='none'>None</Option>
+            <Option value='desc'>Descending price</Option>
+            <Option value='asc'>Ascending price</Option>
+        </Select>
+    )
+}
+
+export default ProductsSort
+
+const SelectWidth: React.CSSProperties = {
+    minWidth: '165px'
+}
