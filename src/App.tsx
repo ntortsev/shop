@@ -6,7 +6,7 @@ import React from 'react'
 function App() {
 
   return (
-    <Layout>
+    <Layout style={LayoutStyles}>
       <HeaderWrap />
       <ContentWrap />
     </Layout>
@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App;
+
+const LayoutStyles = {
+  width: '100vw'
+}
