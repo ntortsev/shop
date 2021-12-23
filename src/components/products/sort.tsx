@@ -3,11 +3,12 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import useFilters from '../../hooks/use-filters';
 import useParams from '../../hooks/use-params';
+import product from '../../store/product';
 
 const ProductsSort = () => {
     const [activeOption, setActiveOption] = React.useState('none')
     const location = useLocation()
-    const [sort] = useParams([ 'sort'])
+    const [category, sort] = useParams(['category','sort'])
     const { Option } = Select;
     const filters = useFilters()
     
@@ -22,6 +23,9 @@ const ProductsSort = () => {
         }
     }, [location.pathname, sort])
 
+    React.useEffect(() => {
+        product.filterProducts(category, sort)
+    }, [activeOption, product.isLoaded])
 
     return (
         <Select style={SelectWidth} value={activeOption} size='large' onChange={handleChange}>

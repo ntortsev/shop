@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import ProductsFilters from './filters'
 import ProductsList from './list'
 import ProductsModal from './modal'
@@ -7,14 +8,18 @@ import ProductsSearch from './search'
 
 const Products = () => {
     return (
-        <div>
+        <ProductsWrap>
             <ProductsSearch />
             <ProductsFilters />
             <ProductsList />
             <ProductsPagination />
             <ProductsModal />
-        </div>
+        </ProductsWrap>
     )
 }
 
 export default Products
+
+const ProductsWrap = styled.div`
+    min-height: calc(100vh - 100px);
+`

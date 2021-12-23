@@ -9,7 +9,7 @@ import useFilters from '../../hooks/use-filters';
 const ProductsCategories = () => {
     const [activeCategory, setActiveCategory] = React.useState('all')
     const location = useLocation()
-    const [category] = useParams(['category'])
+    const [category, sort] = useParams(['category', 'sort'])
     const filters = useFilters()
 
     const handleClick = (e: any) => {
@@ -26,6 +26,10 @@ const ProductsCategories = () => {
             setActiveCategory(category ? category : 'all')
         }
     }, [location.pathname, category])
+
+    React.useEffect(() => {
+        product.filterProducts(category, sort)
+    }, [activeCategory, product.isLoaded])
 
     return (
         <Radio.Group 

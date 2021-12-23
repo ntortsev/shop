@@ -1,19 +1,15 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react'
+import React, { useMemo } from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
+import useParams from '../../hooks/use-params';
 import product from '../../store/product';
+import { ProductType } from '../../types/product';
 import ProductsEmptyList from './empty-list';
 import ProductsItem from './item';
 
-type Product = {
-    id: number;
-    image: string;
-    title: string;
-    price: number;
-}
-
 const ProductsList = () => {
-    const products = product.list
+    const products = product.currList
 
     React.useEffect(() => {
         product.setProducts();
@@ -23,7 +19,7 @@ const ProductsList = () => {
         <>
             {products.length
             ? <ProductsListWrap>
-                {products.map((product: Product) => (
+                {products.map((product: ProductType) => (
                     <ProductsItem 
                     key={product.id}
                     id={product.id}
