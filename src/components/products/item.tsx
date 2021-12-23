@@ -19,7 +19,7 @@ const ProductsItem = ({id, image, title, price}:Props) => {
 
     return (
         <Link to={`/product?id=${id}`} key={id}>
-            <Card bodyStyle={CardBodyStyles}>
+            <Card bodyStyle={CardBodyStyles} hoverable>
                 <Img src={image} loading='lazy'/>
                 <Title level={3} style={TitleStyles} >
                     {title.slice(0,30)}
