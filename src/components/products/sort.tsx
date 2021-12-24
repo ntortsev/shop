@@ -26,7 +26,9 @@ const ProductsSort = () => {
     }, [location])
 
     React.useEffect(() => {
-        product.filterProducts(category.value, sort.value)
+        blockUrls(() => {
+            product.filterProducts(category.value, sort.value)
+        })
     }, [activeOption, product.isLoaded])
 
     return (
