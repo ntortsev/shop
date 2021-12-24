@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import React, { useMemo } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
+import useFilters from '../../hooks/use-filters';
 import useParams from '../../hooks/use-params';
 import product from '../../store/product';
 import { ProductType } from '../../types/product';
@@ -10,16 +11,37 @@ import ProductsItem from './item';
 
 const ProductsList = () => {
     const products = product.currList
+    const filter = useFilters()
+    const location = useLocation()
+    const pageSize = 12
+    const [ page ] = useParams(['page'])
+    const [showEnd, setShowEnd] = React.useState(pageSize)
+    let showStart = showEnd - pageSize
 
     React.useEffect(() => {
         product.setProducts();
     }, [])
 
+    React.useEffect(() => {
+        if(products.length < showStart && product.isLoaded){
+            filter(undefined, 'page')
+        }
+    }, [products])
+
+    React.useEffect(() => {
+        const urls = ['/basket', '/product', '/payment']
+        if(!urls.includes(location.pathname)){
+            setShowEnd(page.value ? pageSize * +page.value : pageSize)
+        }
+    }, [location])
+
     return (
         <>
             {products.length
             ? <ProductsListWrap>
-                {products.map((product: ProductType) => (
+                {products
+                    .slice(showStart, showEnd)
+                    .map((product: ProductType) => (
                     <ProductsItem 
                     key={product.id}
                     id={product.id}

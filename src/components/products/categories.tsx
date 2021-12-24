@@ -13,7 +13,8 @@ const ProductsCategories = () => {
     const filters = useFilters()
 
     const handleClick = (e: any) => {
-        filters(e.target.value, 'category')
+        const category = e.target.value === 'all' ? undefined : e.target.value 
+        filters(category, 'category')
     }
 
     React.useEffect(() => {
@@ -23,12 +24,12 @@ const ProductsCategories = () => {
     React.useEffect(() => {
         const urls = ['/basket', '/product', '/payment']
         if(!urls.includes(location.pathname)){
-            setActiveCategory(category ? category : 'all')
+            setActiveCategory(category.value ? category.value : 'all')
         }
-    }, [location.pathname, category])
+    }, [location.pathname, category.value])
 
     React.useEffect(() => {
-        product.filterProducts(category, sort)
+        product.filterProducts(category.value, sort.value)
     }, [activeCategory, product.isLoaded])
 
     return (

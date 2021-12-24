@@ -3,22 +3,30 @@ import useParams from './use-params'
 
 const useFilters = () => {
     const navigate = useNavigate()
-    const [category, sort] = useParams(['category','sort'])
+    const params = useParams(['category', 'sort', 'page'])
 
-    const handleFilters = (value: string, type: string) => {
-        const anotherValue = type === 'category' ? sort : category
-        const defaultValue = type === 'category' ? 'all' : 'none'
-        const anotherType = type === 'category' ? 'sort' : 'category'
+    const handleFilters = (value: string|undefined, name: string) => {
+        let newUrl = ''
 
-        if(anotherValue){
-            navigate(
-                value === defaultValue 
-                    ? `/products?${anotherType}=${anotherValue}` 
-                    : `/products?${anotherType}=${anotherValue}&${type}=${value}`
-            )
-        }else{
-            navigate(value === defaultValue ? '/' : `/products?${type}=${value}`)
-        }
+        const newParams = params.map(param => (
+            param.name === name 
+            ? {...param, value}
+            : param.name === 'page' 
+                ? {...param, value: undefined}
+                : {...param}
+        ))
+
+        newParams.forEach((param) => {
+            if(param.value){
+                if(!newUrl){
+                    newUrl += `/products?${param.name}=${param.value}`
+                }else{
+                    newUrl += `&${param.name}=${param.value}`
+                }
+            }
+        })
+        
+        navigate(newUrl)
     }
 
     return handleFilters

@@ -1,12 +1,37 @@
 import { Pagination, Row } from 'antd'
+import { observer } from 'mobx-react-lite'
 import React from 'react'
+import { useLocation } from 'react-router-dom'
+import useFilters from '../../hooks/use-filters'
+import useParams from '../../hooks/use-params'
+import product from '../../store/product'
 
 const ProductsPagination = () => {
+    const products = product.currList
+    const location = useLocation()
+    const [activePage, setActivePage] = React.useState(1)
+    const [page] = useParams(['page']) 
+    const filter = useFilters()
+
+    React.useEffect(() => {
+        setActivePage(page.value ? +page.value : 1)
+    }, [location])
+
+    const handleChange = (e: any) => {
+        filter(e === 1 ? undefined : e, 'page')
+    }
     return (
         <Row justify='center'>
-            <Pagination defaultCurrent={1} total={50}/>
+            {products.length > 12 && 
+            <Pagination 
+            current={activePage} 
+            total={products.length} 
+            onChange={handleChange}
+            pageSize={12}
+            />
+            }
         </Row>
     )
 }
 
-export default ProductsPagination
+export default observer(ProductsPagination)

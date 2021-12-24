@@ -12,19 +12,20 @@ const ProductsSort = () => {
     const { Option } = Select;
     const filters = useFilters()
     
-    const handleChange = (e: string) => {
-        filters(e, 'sort')
+    const handleChange = (e: any) => {
+        const sort = e === 'none' ? undefined : e
+        filters(sort, 'sort')
     } 
 
     React.useEffect(() => {
         const urls = ['/basket', '/product', '/payment']
         if(!urls.includes(location.pathname)){
-            setActiveOption(sort ? sort : 'none')
+            setActiveOption(sort.value ? sort.value : 'none')
         }
-    }, [location.pathname, sort])
+    }, [location])
 
     React.useEffect(() => {
-        product.filterProducts(category, sort)
+        product.filterProducts(category.value, sort.value)
     }, [activeOption, product.isLoaded])
 
     return (
