@@ -1,6 +1,7 @@
 import { Select } from 'antd'
 import React from 'react'
 import { useLocation } from 'react-router-dom';
+import useBlockUrls from '../../hooks/use-block-urls';
 import useFilters from '../../hooks/use-filters';
 import useParams from '../../hooks/use-params';
 import product from '../../store/product';
@@ -9,6 +10,7 @@ const ProductsSort = () => {
     const [activeOption, setActiveOption] = React.useState('none')
     const location = useLocation()
     const [category, sort] = useParams(['category','sort'])
+    const blockUrls = useBlockUrls()
     const { Option } = Select;
     const filters = useFilters()
     
@@ -18,10 +20,9 @@ const ProductsSort = () => {
     } 
 
     React.useEffect(() => {
-        const urls = ['/basket', '/product', '/payment']
-        if(!urls.includes(location.pathname)){
+        blockUrls(() => {
             setActiveOption(sort.value ? sort.value : 'none')
-        }
+        })
     }, [location])
 
     React.useEffect(() => {

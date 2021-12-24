@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
+import useBlockUrls from '../../hooks/use-block-urls';
 import useFilters from '../../hooks/use-filters';
 import useParams from '../../hooks/use-params';
 import product from '../../store/product';
@@ -12,6 +13,7 @@ import ProductsItem from './item';
 const ProductsList = () => {
     const products = product.currList
     const filter = useFilters()
+    const blockUrls = useBlockUrls()
     const location = useLocation()
     const pageSize = 12
     const [ page ] = useParams(['page'])
@@ -29,10 +31,9 @@ const ProductsList = () => {
     }, [products])
 
     React.useEffect(() => {
-        const urls = ['/basket', '/product', '/payment']
-        if(!urls.includes(location.pathname)){
+        blockUrls(() => {
             setShowEnd(page.value ? pageSize * +page.value : pageSize)
-        }
+        })
     }, [location])
 
     return (

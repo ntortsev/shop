@@ -5,11 +5,13 @@ import product from '../../store/product'
 import { observer } from 'mobx-react-lite';
 import useParams from '../../hooks/use-params';
 import useFilters from '../../hooks/use-filters';
+import useBlockUrls from '../../hooks/use-block-urls';
 
 const ProductsCategories = () => {
     const [activeCategory, setActiveCategory] = React.useState('all')
     const location = useLocation()
     const [category, sort] = useParams(['category', 'sort'])
+    const blockUrls = useBlockUrls()
     const filters = useFilters()
 
     const handleClick = (e: any) => {
@@ -22,11 +24,10 @@ const ProductsCategories = () => {
     }, [])
 
     React.useEffect(() => {
-        const urls = ['/basket', '/product', '/payment']
-        if(!urls.includes(location.pathname)){
+        blockUrls(() => {
             setActiveCategory(category.value ? category.value : 'all')
-        }
-    }, [location.pathname, category.value])
+        })
+    }, [location])
 
     React.useEffect(() => {
         product.filterProducts(category.value, sort.value)
