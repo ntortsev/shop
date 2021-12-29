@@ -49,6 +49,12 @@ class Product {
             this.currList = [...this.initialList]
         }
     }
+
+    searchProducts = (searchValue: string|undefined) => {
+        searchValue = searchValue ? searchValue : ''
+        const regex = new RegExp(`(${searchValue})`, 'gi')
+        this.currList = [...this.initialList].filter(item => item.title.match(regex))
+    }
 }
 
 export default new Product()

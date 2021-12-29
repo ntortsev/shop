@@ -16,7 +16,7 @@ const ProductsList = () => {
     const blockUrls = useBlockUrls()
     const location = useLocation()
     const pageSize = 12
-    const [ page ] = useParams(['page'])
+    const [ page, search, category, sort ] = useParams(['page', 'search', 'category', 'sort'])
     const [showEnd, setShowEnd] = React.useState(pageSize)
     let showStart = showEnd - pageSize
 
@@ -33,8 +33,9 @@ const ProductsList = () => {
     React.useEffect(() => {
         blockUrls(() => {
             setShowEnd(page.value ? pageSize * +page.value : pageSize)
+            if(!sort.value && !category.value) product.searchProducts(search.value)
         })
-    }, [location])
+    }, [location, product.isLoaded])
 
     return (
         <>

@@ -10,7 +10,7 @@ import useBlockUrls from '../../hooks/use-block-urls';
 const ProductsCategories = () => {
     const [activeCategory, setActiveCategory] = React.useState('all')
     const location = useLocation()
-    const [category, sort] = useParams(['category', 'sort'])
+    const [category, sort, search] = useParams(['category', 'sort', 'search'])
     const blockUrls = useBlockUrls()
     const filters = useFilters()
 
@@ -30,7 +30,7 @@ const ProductsCategories = () => {
     }, [location])
 
     React.useEffect(() => {
-        product.filterProducts(category.value, sort.value)
+        if(!search.value) product.filterProducts(category.value, sort.value)
     }, [activeCategory, product.isLoaded])
 
     return (

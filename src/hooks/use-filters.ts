@@ -3,10 +3,11 @@ import useParams from './use-params'
 
 const useFilters = () => {
     const navigate = useNavigate()
-    const params = useParams(['category', 'sort', 'page'])
+    let params = useParams(['category', 'sort', 'page', 'search'])
 
     const handleFilters = (value: string|undefined, name: string) => {
         let newUrl = ''
+        if(name !== 'page') params = params.slice(0,3)
 
         const newParams = params.map(param => (
             param.name === name 

@@ -9,7 +9,7 @@ import product from '../../store/product';
 const ProductsSort = () => {
     const [activeOption, setActiveOption] = React.useState('none')
     const location = useLocation()
-    const [category, sort] = useParams(['category','sort'])
+    const [category, sort, search] = useParams(['category','sort', 'search'])
     const blockUrls = useBlockUrls()
     const { Option } = Select;
     const filters = useFilters()
@@ -27,7 +27,7 @@ const ProductsSort = () => {
 
     React.useEffect(() => {
         blockUrls(() => {
-            product.filterProducts(category.value, sort.value)
+            if(!search.value) product.filterProducts(category.value, sort.value)
         })
     }, [activeOption, product.isLoaded])
 
