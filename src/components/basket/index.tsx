@@ -14,6 +14,7 @@ const Basket = () => {
         visible={isVisible}
         onClose={handleClose}
         footer={<DrawerFooter />}
+        style={DrawerStyles}
         >
             {new Array(5).fill(0).map((item, index) => (
                 <BasketItem key={index} />
@@ -23,3 +24,7 @@ const Basket = () => {
 }
 
 export default Basket
+
+const DrawerStyles: React.CSSProperties = {
+    zIndex: 2000
+}

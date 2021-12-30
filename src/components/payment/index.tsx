@@ -15,6 +15,7 @@ const Payment = () => {
         visible={isVisible}
         onClose={handleClose}
         footer={<DrawerFooter />}
+        style={DrawerStyles}
         >
             <Form layout='vertical'>
                 <Form.Item label="Name">
@@ -54,3 +55,7 @@ const Payment = () => {
 }
 
 export default Payment
+
+const DrawerStyles: React.CSSProperties = {
+    zIndex: 2000
+}
