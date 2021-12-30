@@ -48,7 +48,7 @@ const HeaderStyles: React.CSSProperties = {
     padding: 0,
     position: 'fixed',
     width: '100vw',
-    zIndex: 15,
+    zIndex: 1500,
     paddingRight: '12px'
 }
 
