@@ -1,11 +1,25 @@
 import { Button, Card, Typography } from 'antd';
 import Modal from 'antd/lib/modal/Modal'
+import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import useModal from '../../hooks/use-modal';
+import useParams from '../../hooks/use-params';
+import product from '../../store/product';
+import ProductsEmptyItem from './empty-item';
 
 const ProductsModal = () => {
     const [isVisible, handleClose] = useModal('/product');
+    const [id] = useParams(['id'])
+    const location = useLocation()
+    const initialProduct = {image: '', title: '', description: ''}
+    const [currProduct, setCurrProduct] = React.useState(initialProduct)
+
+    React.useEffect(() => {
+        const newProduct = product.initialList.find(item => id.value && item.id === +id.value)
+        setCurrProduct(newProduct ? newProduct : initialProduct)
+    }, [location, product.isLoaded])
 
     const {Text} = Typography;
 
@@ -14,49 +28,62 @@ const ProductsModal = () => {
         visible={isVisible}
         onCancel={handleClose}
         footer={null}
-        width={600}
+        width={1000}
         centered
         >
-            <ModalInner>
-                <div>
-                    <Image src='https://picsum.photos/1920/1080' alt='product'/>
-                </div>
+            {product.isLoaded 
+            ?   (<ModalInner>
+                <ImageWrap>
+                    <Image src={currProduct?.image} alt='product'/>
+                </ImageWrap>
                 <Card 
-                title="Product" 
+                title={currProduct?.title} 
                 style={CardStyles}
                 bordered={false}
                 >
                     <Text>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio possimus fugiat culpa corrupti! 
-                        Quo sapiente sit officiis atque quaerat mollitia, quis commodi laboriosam perspiciatis dignissimos?
+                        {currProduct?.description}
                     </Text>
                     <Button type='primary' block style={ButtonStyles} size='large'>
                         Add to basket
                     </Button>
                 </Card>
-            </ModalInner>
+            </ModalInner>)
+            : <ProductsEmptyItem />
+            }
         </Modal>
     )
 }
 
-export default ProductsModal
+export default observer(ProductsModal)
 
 const ModalInner = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: minmax(250px, 1fr);
-    gap: 1rem;
+    display: flex;
     padding: 15px;
+    gap: 1rem;
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+    }
 `
 
 const Image = styled.img`
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+`
+
+const ImageWrap = styled.div`
+    max-height: 350px;
+    max-width: 1000px;
+    width: 100%;
+    min-width: 250px;
 `
 
 const CardStyles: React.CSSProperties = {
-    paddingBottom: '40px'
+    paddingBottom: '40px',
+    maxWidth: '1000px',
+    minWidth: '250px',
+    width: '100%',
 }
 
 const ButtonStyles: React.CSSProperties = {
