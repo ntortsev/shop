@@ -15,6 +15,20 @@ class Basket {
     removeFromBasket = (id: number) => {
         this.list = [...this.list].filter(product => product.id !== id)
     }
+
+    changeCount = (id: number, initialPrice: number, sign: string) => {
+        this.list = [...this.list].map(product => {
+            const newCount = sign === 'plus'
+                ? product.count + 1
+                : product.count > 1 ? product.count - 1 : 1
+
+            return product.id === id 
+                ? {...product, 
+                count: newCount, 
+                price: +(initialPrice * newCount).toFixed(2)} 
+                : {...product}
+        })
+    }
 }
 
 export default new Basket()

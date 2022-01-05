@@ -1,6 +1,7 @@
 import { Button, Col, Row, Typography } from 'antd'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const DrawerFooter = () => {
     const { Title } = Typography;
@@ -13,7 +14,7 @@ const DrawerFooter = () => {
     }
 
     return (
-        <div>
+        <DrawerFooterWrap>
             <Row justify='space-between'>
                 <Col>
                     <Title level={3}>
@@ -29,8 +30,12 @@ const DrawerFooter = () => {
             <Button type='primary' onClick={handleClick} block size='large'>
                 {location.pathname === '/basket' ? 'Go to payment' : 'To order'}
             </Button>
-        </div>
+        </DrawerFooterWrap>
     )
 }
 
 export default DrawerFooter
+
+const DrawerFooterWrap = styled.div`
+    user-select: none;
+`
