@@ -6,20 +6,40 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import useModal from '../../hooks/use-modal';
 import useParams from '../../hooks/use-params';
+import basket from '../../store/basket';
 import product from '../../store/product';
+import { ProductType } from '../../types/product';
 import ProductsEmptyItem from './empty-item';
 
 const ProductsModal = () => {
+    const initialProduct: ProductType = {
+        id: 0, price: 0, category: 'all', count: 0, image: '', title: '', description: ''
+    }
     const [isVisible, handleClose] = useModal('/product');
     const [id] = useParams(['id'])
     const location = useLocation()
-    const initialProduct = {image: '', title: '', description: ''}
     const [currProduct, setCurrProduct] = React.useState(initialProduct)
+    const [isProductAdded, setIsProductAdded] = React.useState(false)
+    console.log(isProductAdded);
 
     React.useEffect(() => {
         const newProduct = product.initialList.find(item => id.value && item.id === +id.value)
         setCurrProduct(newProduct ? newProduct : initialProduct)
     }, [location, product.isLoaded])
+
+    React.useEffect(() => {
+        const foundProductId = basket.list.findIndex(item => (
+            item.id === (id.value ? +id.value : 0)
+        ))
+        setIsProductAdded(
+            foundProductId > -1 ? true : false
+        )
+    }, [basket.list.length, location])
+
+    const handleClick = () => {
+        if(!isProductAdded) basket.addToBasket(currProduct)
+        if(isProductAdded) basket.removeFromBasket(currProduct.id)
+    }
 
     const {Text} = Typography;
 
@@ -44,8 +64,14 @@ const ProductsModal = () => {
                     <Text>
                         {currProduct?.description}
                     </Text>
-                    <Button type='primary' block style={ButtonStyles} size='large'>
-                        Add to basket
+                    <Button type='primary' 
+                    block 
+                    style={ButtonStyles} 
+                    size='large' 
+                    onClick={handleClick} 
+                    danger={isProductAdded}
+                    >
+                        {isProductAdded ? 'Remove' : 'Add to basket'}
                     </Button>
                 </Card>
             </ModalInner>)
