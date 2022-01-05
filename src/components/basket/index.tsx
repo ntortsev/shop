@@ -3,6 +3,7 @@ import React from 'react'
 import BasketItem from './item'
 import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal'
+import basket from '../../store/basket';
 
 const Basket = () => {
     const [isVisible, handleClose] = useModal('/basket');
@@ -16,8 +17,11 @@ const Basket = () => {
         footer={<DrawerFooter />}
         style={DrawerStyles}
         >
-            {new Array(5).fill(0).map((item, index) => (
-                <BasketItem key={index} />
+            {basket.list.map((item) => (
+                <BasketItem 
+                key={item.id}
+                {...item}
+                />
             ))}
         </Drawer>
     )

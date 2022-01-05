@@ -1,21 +1,25 @@
 import { Button, Card, Typography } from 'antd'
+import { observer } from 'mobx-react-lite'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import basket from '../../store/basket'
+import { ProductType } from '../../types/product'
 
-type Props = {
-    id: number;
-    image: string;
-    title: string;
-    price: number;
-}
-
-const ProductsItem = ({id, image, title, price}:Props) => {
+const ProductsItem = ({id, image, title, price, description, count, category}:ProductType) => {
     const { Title } = Typography;
+    const [isProductAdded, setIsProductAdded] = React.useState(false)
 
     const handleClick = (e: React.MouseEvent) => {
         e.preventDefault();
+
+        if(!isProductAdded) basket.addToBasket({id, image, title, price, description, count, category})
+        if(isProductAdded) basket.removeFromBasket(id)
     }
+
+    React.useEffect(() => {
+        setIsProductAdded((basket.list.findIndex(item => item.id === id)) > -1 ? true : false)
+    }, [basket.list.length])
 
     return (
         <Link to={`/product?id=${id}`} key={id}>
@@ -28,8 +32,8 @@ const ProductsItem = ({id, image, title, price}:Props) => {
                     <Price>
                         {price}$
                     </Price>
-                    <Button onClick={handleClick} type='primary'>
-                        Add to basket
+                    <Button onClick={handleClick} type={'primary'} danger={isProductAdded}>
+                        {isProductAdded ? 'Remove' : 'Add to basket'}
                     </Button>
                 </CardBottom>
             </Card>
@@ -37,7 +41,7 @@ const ProductsItem = ({id, image, title, price}:Props) => {
     )
 }
 
-export default ProductsItem
+export default observer(ProductsItem)
 
 const Img = styled.img`
     object-fit: cover;

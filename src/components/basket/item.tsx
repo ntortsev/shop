@@ -3,8 +3,9 @@ import { CloseOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons'
 import { Card, Space, Typography } from 'antd'
 import styled from 'styled-components'
 import Meta from 'antd/lib/card/Meta'
+import { ProductType } from '../../types/product'
 
-const BasketItem = () => {
+const BasketItem = ({title, image, price, count}: ProductType) => {
     const { Text } = Typography;
 
     return (
@@ -16,22 +17,20 @@ const BasketItem = () => {
             ]}
             >
             <Meta
-                avatar={<Avatar src='https://picsum.photos/1920/1080'/>}
-                title="Product"
+                avatar={<Avatar src={image}/>}
+                title={title}
                 description={
-                <div>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                     <Space>
                         <div>
                             <Text strong>price:</Text>
-                            <Text keyboard>100$</Text>
+                            <Text keyboard>{price}$</Text>
                         </div>
                         <div>
                             <Text strong>count:</Text>
-                            <Text keyboard>1</Text>
+                            <Text keyboard>{count}</Text>
                         </div>
                     </Space>
-                </div>}
+                }
             />
         </Card>
     )

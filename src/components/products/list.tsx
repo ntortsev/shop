@@ -46,10 +46,7 @@ const ProductsList = () => {
                     .map((product: ProductType) => (
                     <ProductsItem 
                     key={product.id}
-                    id={product.id}
-                    image={product.image}
-                    title={product.title}
-                    price={product.price}
+                    {...product}
                     />
                 ))}
             </ProductsListWrap>

@@ -5,6 +5,8 @@ import Container from './container'
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Header } from 'antd/lib/layout/layout';
 import { Link, useNavigate } from 'react-router-dom';
+import basket from '../store/basket';
+import { observer } from 'mobx-react-lite';
 
 const HeaderWrap = () => {
     const navigate = useNavigate();
@@ -23,7 +25,7 @@ const HeaderWrap = () => {
                         </Link>
                     </Col>
                     <Col>
-                        <Badge count={1} overflowCount={99} offset={[0,35]}>
+                        <Badge count={basket.list.length} overflowCount={99} offset={[0,35]}>
                             <Button block size="large" icon={<ShoppingCartOutlined />} onClick={handleClick}>
                                 Basket
                             </Button>
@@ -35,7 +37,7 @@ const HeaderWrap = () => {
     )
 }
 
-export default HeaderWrap
+export default observer(HeaderWrap)
 
 const Logo = styled.div`
     color: #eee;
