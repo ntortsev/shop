@@ -9,7 +9,7 @@ class Basket {
     }
 
     addToBasket = (basketItem: ProductType) => {
-        this.list.push({...basketItem, count: 1})
+        this.list = [...this.list, {...basketItem, count: 1}]
     }
 
     removeFromBasket = (id: number) => {
