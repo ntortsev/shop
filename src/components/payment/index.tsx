@@ -1,12 +1,10 @@
-import { Drawer, Form, Input, Radio, Select, TimePicker } from 'antd'
+import { Drawer, Form, Input } from 'antd'
 import React from 'react'
 import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal';
 
 const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
-
-    const { Option } = Select;
 
     return (
         <Drawer 
@@ -26,28 +24,12 @@ const Payment = () => {
                     <Input size='large' placeholder='Your phone'/>
                 </Form.Item>
 
-                <Form.Item label="Payment">
-                    <Radio.Group buttonStyle='solid' size='large'>
-                        <Radio.Button value="site">On the site</Radio.Button>
-                        <Radio.Button value="shop">In the shop</Radio.Button>
-                    </Radio.Group>
+                <Form.Item label="Email">
+                    <Input size='large' placeholder='Your email'/>
                 </Form.Item>
 
-                {/* if selected on shop */}
-                <Form.Item label="Shop adress">
-                    <Select size='large' placeholder='Adress'>
-                        <Option value='pushkina'>Moscow, Pushkina street, 25</Option>
-                        <Option value='lenina'>Chelyabinsk, Lenina street, 11</Option>
-                    </Select>
-                </Form.Item>
-
-                {/* if selected on site */}
-                <Form.Item label="Your adress">
-                    <Input size='large' placeholder='Adress'/>
-                </Form.Item>
-
-                <Form.Item label="Time">
-                    <TimePicker format="HH:mm" minuteStep={15} size='large'/>
+                <Form.Item label="Adress">
+                    <Input size='large' placeholder='Your adress'/>
                 </Form.Item>
             </Form>
         </Drawer>
