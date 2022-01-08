@@ -22,6 +22,12 @@ const DrawerFooter = () => {
         }, 0))
     }, [basket.list])
 
+    React.useEffect(() => {
+        if(location.pathname === '/payment' && !totalPrice){
+            navigate('/')
+        }
+    },[location.pathname, totalPrice])
+
     return (
         <DrawerFooterWrap>
             <Row justify='space-between'>
