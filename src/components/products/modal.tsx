@@ -20,7 +20,6 @@ const ProductsModal = () => {
     const location = useLocation()
     const [currProduct, setCurrProduct] = React.useState(initialProduct)
     const [isProductAdded, setIsProductAdded] = React.useState(false)
-    console.log(isProductAdded);
 
     React.useEffect(() => {
         const newProduct = product.initialList.find(item => id.value && item.id === +id.value)
