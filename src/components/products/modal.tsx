@@ -23,7 +23,7 @@ const ProductsModal = () => {
 
     React.useEffect(() => {
         const newProduct = product.initialList.find(item => id.value && item.id === +id.value)
-        setCurrProduct(newProduct ? newProduct : initialProduct)
+        setCurrProduct(newProduct ? newProduct : product.initialList[0])
     }, [location, product.isLoaded])
 
     React.useEffect(() => {
