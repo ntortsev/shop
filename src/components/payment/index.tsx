@@ -2,6 +2,7 @@ import { Drawer, Form, Input } from 'antd'
 import React from 'react'
 import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal';
+import MaskedInput from 'antd-mask-input';
 
 const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
@@ -21,7 +22,7 @@ const Payment = () => {
                 </Form.Item>
 
                 <Form.Item label="Phone">
-                    <Input size='large' placeholder='Your phone'/>
+                    <MaskedInput size='large' addonBefore="+7" mask="(111)111-11-11" />
                 </Form.Item>
 
                 <Form.Item label="Email">
