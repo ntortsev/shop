@@ -23,7 +23,7 @@ const DrawerFooter = () => {
     }, [basket.list])
 
     React.useEffect(() => {
-        if(location.pathname === '/payment' && !totalPrice){
+        if(location.pathname === '/payment' && !basket.list.length){
             navigate('/')
         }
     },[location.pathname, totalPrice])
