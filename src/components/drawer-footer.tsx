@@ -1,11 +1,16 @@
-import { Button, Col, Row, Typography } from 'antd'
+import { Button, Col, FormInstance, Row, Typography } from 'antd'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import basket from '../store/basket'
 import { observer } from 'mobx-react-lite';
 
-const DrawerFooter = () => {
+type Props = {
+    form?: FormInstance<any>,
+    isButtonLoading?: boolean
+}
+
+const DrawerFooter = ({form, isButtonLoading}: Props) => {
     const { Title } = Typography;
     const navigate = useNavigate()
     const location = useLocation()
@@ -13,7 +18,7 @@ const DrawerFooter = () => {
 
     const handleClick = () => {
         if(location.pathname === '/basket') navigate('/payment')
-        if(location.pathname === '/payment') console.log('hello')
+        if(location.pathname === '/payment') form?.submit()
     }
 
     React.useEffect(() => {
@@ -42,7 +47,7 @@ const DrawerFooter = () => {
                     </Title>
                 </Col>
             </Row>
-            <Button type='primary' onClick={handleClick} block size='large'>
+            <Button type='primary' onClick={handleClick} block size='large' loading={isButtonLoading}>
                 {location.pathname === '/basket' ? 'Go to payment' : 'To order'}
             </Button>
         </DrawerFooterWrap>

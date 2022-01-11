@@ -32,7 +32,7 @@ const PaymentAdress = () => {
     }, [currAdress])
 
     return (
-        <Form.Item label="Adress">
+        <Form.Item label="Adress" name={'Adress'} rules={[{ required: true}]} required={false}>
             <Select
                 placeholder="Your adress"
                 size='large'
