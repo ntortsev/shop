@@ -18,7 +18,6 @@ const Basket = () => {
         visible={isVisible}
         onClose={handleClose}
         footer={!isBasketEmpty && <DrawerFooter />}
-        style={DrawerStyles}
         >
             {!isBasketEmpty ? 
             basket.list.map((item) => (
@@ -43,7 +42,3 @@ const EmptyWrap = styled.div`
     align-items: center;
     justify-content: center;
 `
-
-const DrawerStyles: React.CSSProperties = {
-    zIndex: 2000
-}

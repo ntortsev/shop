@@ -32,7 +32,7 @@ const ProductsSort = () => {
     }, [activeOption, product.isLoaded])
 
     return (
-        <Select style={SelectWidth} value={activeOption} size='large' onChange={handleChange}>
+        <Select dropdownStyle={DropDownStyles} style={SelectWidth} value={activeOption} size='large' onChange={handleChange}>
             <Option value='none'>None</Option>
             <Option value='desc'>Descending price</Option>
             <Option value='asc'>Ascending price</Option>
@@ -44,4 +44,8 @@ export default ProductsSort
 
 const SelectWidth: React.CSSProperties = {
     minWidth: '165px'
+}
+
+const DropDownStyles: React.CSSProperties = {
+    zIndex: 10
 }
