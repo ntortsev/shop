@@ -3,9 +3,12 @@ import React from 'react'
 import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal';
 import MaskedInput from 'antd-mask-input';
+import useWindowSize from '../../hooks/use-window-size';
+import PaymentAdress from './adress';
 
 const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
+    const [windowWidth] = useWindowSize();
 
     return (
         <Drawer 
@@ -14,6 +17,7 @@ const Payment = () => {
         visible={isVisible}
         onClose={handleClose}
         footer={<DrawerFooter />}
+        size={windowWidth >= 730 ? 'large' : 'default'}
         >
             <Form layout='vertical'>
                 <Form.Item label="Name">
@@ -28,9 +32,7 @@ const Payment = () => {
                     <Input size='large' placeholder='Your email'/>
                 </Form.Item>
 
-                <Form.Item label="Adress">
-                    <Input size='large' placeholder='Your adress'/>
-                </Form.Item>
+                <PaymentAdress />
             </Form>
         </Drawer>
     )
