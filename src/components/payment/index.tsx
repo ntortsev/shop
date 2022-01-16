@@ -15,7 +15,7 @@ const Payment = () => {
     const handleSubmit = (values: {[option: string]:string}) => {
         setIsButtonLoading(true)
 
-        fetch('http://httpbin.org/post', {
+        fetch('https://httpbin.org/post', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
