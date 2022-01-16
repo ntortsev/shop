@@ -1,4 +1,4 @@
-import { Drawer, Form, Input } from 'antd'
+import { Drawer, Form, Input, notification } from 'antd'
 import React from 'react'
 import DrawerFooter from '../drawer-footer';
 import useModal from '../../hooks/use-modal';
@@ -25,10 +25,25 @@ const Payment = () => {
         })
         .then(request => {
             if(!request.ok) return;
-            // do something
+
+            notification.success({
+                message: 'Product ordered successfully', 
+                placement: 'bottomLeft', 
+                duration: 2.5,
+            })
         })
-        .catch(error => console.error(error))
-        .finally(() => setIsButtonLoading(false))
+        .catch(error => {
+            console.error(error)
+            notification.error({
+                message: 'There was an error during the order', 
+                placement: 'bottomLeft', 
+                duration: 2.5,
+            })
+        })
+        .finally(() => {
+            setIsButtonLoading(false)
+            handleClose()
+        })
     };
 
     return (
