@@ -13,7 +13,7 @@ const ProductsSearch = () => {
     const location = useLocation()
     const blockUrls = useBlockUrls()
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const currSearch = e.target.value
         if(/\W/.test(currSearch)) return;
 

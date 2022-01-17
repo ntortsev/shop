@@ -14,7 +14,7 @@ const ProductsSort = () => {
     const { Option } = Select;
     const filters = useFilters()
     
-    const handleChange = (e: any) => {
+    const handleChange = (e: string) => {
         const sort = e === 'none' ? undefined : e
         filters(sort, 'sort')
     } 

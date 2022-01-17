@@ -14,8 +14,9 @@ const ProductsCategories = () => {
     const blockUrls = useBlockUrls()
     const filters = useFilters()
 
-    const handleClick = (e: any) => {
-        const category = e.target.value === 'all' ? undefined : e.target.value 
+    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+        const radioBtn = (e.target as HTMLInputElement)
+        const category = radioBtn.value === 'all' ? undefined : radioBtn.value 
         filters(category, 'category')
     }
 

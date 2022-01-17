@@ -17,8 +17,8 @@ const ProductsPagination = () => {
         setActivePage(page.value ? +page.value : 1)
     }, [location])
 
-    const handleChange = (e: any) => {
-        filter(e === 1 ? undefined : e, 'page')
+    const handleChange = (e: number) => {
+        filter(e === 1 ? undefined : e.toString(), 'page')
     }
     return (
         <Row justify='center'>
