@@ -51,7 +51,6 @@ const HeaderStyles: React.CSSProperties = {
     position: 'fixed',
     width: '100vw',
     zIndex: 999,
-    paddingRight: '12px'
 }
 
 
