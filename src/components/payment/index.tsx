@@ -5,6 +5,7 @@ import useModal from '../../hooks/use-modal';
 import MaskedInput from 'antd-mask-input';
 import useWindowSize from '../../hooks/use-window-size';
 import PaymentAdress from './adress';
+import basket from '../../store/basket';
 
 const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
@@ -31,6 +32,8 @@ const Payment = () => {
                 placement: 'bottomLeft', 
                 duration: 2.5,
             })
+
+            basket.clearBasket()
         })
         .catch(error => {
             console.error(error)

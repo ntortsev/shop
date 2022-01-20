@@ -16,6 +16,10 @@ class Basket {
         this.list = [...this.list].filter(product => product.id !== id)
     }
 
+    clearBasket = () => {
+        this.list = []
+    }
+
     changeCount = (id: number, initialPrice: number, sign: string) => {
         this.list = [...this.list].map(product => {
             const newCount = sign === 'plus'
