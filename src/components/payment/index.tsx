@@ -6,6 +6,7 @@ import useWindowSize from '../../hooks/use-window-size';
 import PaymentAdress from './adress';
 import basket from '../../store/basket';
 import PaymentPhone from './phone';
+import PaymentEmail from './email';
 
 const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
@@ -70,11 +71,7 @@ const Payment = () => {
                 </Form.Item>
 
                 <PaymentPhone form={form}/>
-
-                <Form.Item label="Email" name={'Email'} rules={[{ required: true}]}>
-                    <Input size='large' placeholder='Your email'/>
-                </Form.Item>
-
+                <PaymentEmail />
                 <PaymentAdress />
             </Form>
         </Drawer>
