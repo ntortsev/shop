@@ -1,53 +1,64 @@
 import { Form, Select } from 'antd';
 import React from 'react'
+import adress from '../../store/adress';
+import { observer } from 'mobx-react-lite';
 
-const adressesUrl = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address"
-const token = "3eb54f13ae1c911ff6c7d0fc8e3c99d8b77d2975"
+type AdressType = {
+    value: string,
+    unrestricted_value: string, 
+    data: {
+        region_with_type: string,
+        fias_level: number
+    }
+}
 
 const PaymentAdress = () => {
     const { Option } = Select;
     const [currAdress, setCurrAdress] = React.useState('')
-    const [adressList, setAdressList] = React.useState([])
+    const [fiasLevel, setFiasLevel] = React.useState(0)
+
+    const handleSelect = (_: string, option: any) => {
+        setFiasLevel(+option.fiaslevel)
+    }
+    
+    const checkFiasLevel = () => {
+        return fiasLevel < 8 
+            ? Promise.reject(new Error('You should to enter the full address'))
+            : Promise.resolve() 
+    }
 
     const handleChange = (e: string) => {
         setCurrAdress(e);
     }
 
+    const getAdressWithoutRegion = (adress: string, region: string) => {
+        return adress.split(', ').filter(item => item !== region).join(', ')
+    }
+
     React.useEffect(() => {
-        fetch(adressesUrl, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": "Token " + token
-            },
-            body: JSON.stringify({
-                query: currAdress,
-            })
-        })
-            .then(response => response.json())
-            .then(result => setAdressList(result.suggestions))
-            .catch(error => console.error(error));
+        adress.fetchAdressList(currAdress)
     }, [currAdress])
 
     return (
-        <Form.Item label="Adress" name={'Adress'} rules={[{ required: true}]}>
+        <Form.Item label="Adress" name={'Adress'} rules={[{ required: true, validator: checkFiasLevel}]}>
             <Select
                 placeholder="Your adress"
                 size='large'
                 onChange={handleChange}
                 onSearch={handleChange}
+                onSelect={handleSelect}
                 showSearch
                 filterOption={false}
                 notFoundContent={null}
+                loading={adress.isLoading}
             >
-                {adressList.map((adress: {value: string}) => (
+                {adress.list?.map((adress: AdressType) => (
                     <Option 
-                    key={adress.value} 
-                    value={adress.value}
+                    key={adress.unrestricted_value} 
+                    value={adress.unrestricted_value}
+                    fiaslevel={adress.data.fias_level}
                     >
-                        {adress.value}
+                        {getAdressWithoutRegion(adress.value, adress.data.region_with_type)}
                     </Option>
                 ))}
             </Select>
@@ -55,4 +66,4 @@ const PaymentAdress = () => {
     )
 }
 
-export default PaymentAdress
+export default observer(PaymentAdress)
