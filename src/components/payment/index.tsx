@@ -63,14 +63,15 @@ const Payment = () => {
             id='paymentForm' 
             form={form} 
             onFinish={handleSubmit}
+            requiredMark={false}
             >
-                <Form.Item label="Name" name={'Name'} rules={[{ required: true}]} required={false}>
+                <Form.Item label="Name" name={'Name'} rules={[{ required: true}]}>
                     <Input size='large' placeholder='Your name' />
                 </Form.Item>
 
                 <PaymentPhone form={form}/>
 
-                <Form.Item label="Email" name={'Email'} rules={[{ required: true}]} required={false}>
+                <Form.Item label="Email" name={'Email'} rules={[{ required: true}]}>
                     <Input size='large' placeholder='Your email'/>
                 </Form.Item>
 
