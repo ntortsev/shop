@@ -7,6 +7,7 @@ import PaymentAdress from './adress';
 import basket from '../../store/basket';
 import PaymentPhone from './phone';
 import PaymentEmail from './email';
+import PaymentName from './name';
 
 const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
@@ -66,10 +67,7 @@ const Payment = () => {
             onFinish={handleSubmit}
             requiredMark={false}
             >
-                <Form.Item label="Name" name={'Name'} rules={[{ required: true}]}>
-                    <Input size='large' placeholder='Your name' />
-                </Form.Item>
-
+                <PaymentName />
                 <PaymentPhone form={form}/>
                 <PaymentEmail />
                 <PaymentAdress />
