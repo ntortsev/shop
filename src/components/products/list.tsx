@@ -21,11 +21,11 @@ const ProductsList = () => {
     let showStart = showEnd - pageSize
 
     React.useEffect(() => {
-        product.setProducts();
+        product.fetchProducts();
     }, [])
 
     React.useEffect(() => {
-        if(products.length < showStart && product.isLoaded){
+        if(products.length < showStart && !product.isLoading){
             filter(undefined, 'page')
         }
     }, [products])
@@ -35,7 +35,7 @@ const ProductsList = () => {
             setShowEnd(page.value ? pageSize * +page.value : pageSize)
             if(!sort.value && !category.value) product.searchProducts(search.value)
         })
-    }, [location, product.isLoaded])
+    }, [location, product.isLoading])
 
     return (
         <>

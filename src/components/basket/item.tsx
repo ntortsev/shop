@@ -27,7 +27,7 @@ const BasketItem = ({id, title, image, price, count}: ProductType) => {
     React.useEffect(() => {
         const currProduct  = product.initialList.find(item => item.id === id)
         setInitialPrice(currProduct ? currProduct.price : 0)
-    }, [product.isLoaded])
+    }, [product.isLoading])
 
     return (
         <Card

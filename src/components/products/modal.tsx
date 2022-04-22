@@ -24,7 +24,7 @@ const ProductsModal = () => {
     React.useEffect(() => {
         const newProduct = product.initialList.find(item => id.value && item.id === +id.value)
         setCurrProduct(newProduct ? newProduct : product.initialList[0])
-    }, [location, product.isLoaded])
+    }, [location, product.isLoading])
 
     React.useEffect(() => {
         const foundProductId = basket.list.findIndex(item => (
@@ -50,7 +50,7 @@ const ProductsModal = () => {
         width={1000}
         centered
         >
-            {product.isLoaded 
+            {!product.isLoading 
             ?   (<ModalInner>
                 <ImageWrap>
                     <Image src={currProduct?.image} alt='product'/>

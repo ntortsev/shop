@@ -29,7 +29,7 @@ const ProductsSort = () => {
         blockUrls(() => {
             if(!search.value) product.filterProducts(category.value, sort.value)
         })
-    }, [activeOption, product.isLoaded])
+    }, [activeOption, product.isLoading])
 
     return (
         <Select dropdownStyle={DropDownStyles} style={SelectWidth} value={activeOption} size='large' onChange={handleChange}>

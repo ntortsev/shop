@@ -9,13 +9,13 @@ import { observer } from 'mobx-react-lite'
 const ProductsEmptyList = () => {
     return (
         <>
-            {product.isLoaded
-                ? <EmptyWrap>
-                    <Empty/>
-                </EmptyWrap>
-                : <ProductsListWrap>
+            {product.isLoading
+                ? <ProductsListWrap>
                     {new Array(12).fill(0).map((_, index) => <ProductsEmptyItem key={index}/>)}
                 </ProductsListWrap>
+                : <EmptyWrap>
+                    <Empty/>
+                </EmptyWrap>
             }
         </>
     )

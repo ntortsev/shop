@@ -6,24 +6,36 @@ const URL = 'https://fakestoreapi.com'
 class Product {
     initialList: ProductType[] = []
     currList: ProductType[] = []
-    isLoaded = false
-    categories = []
+    isLoading: boolean = false
+    categories: string[] = []
 
     constructor(){
         makeAutoObservable(this)
     }
 
-    setProducts = () => {
+    setIsLoading = (isLoading: boolean) => {
+        this.isLoading =  isLoading
+    }
+
+    setProducts = (products: ProductType[]) => {
+        this.initialList = products
+    }
+
+    fetchProducts = () => {
+        this.setIsLoading(true)
+
         fetch(`${URL}/products`)
             .then(res => res.json())
-            .then(json => this.initialList = json)
-            .finally(() => this.isLoaded = true)
+            .then(json => this.setProducts(json))
+            .finally(() => this.setIsLoading(false))
     }
 
     setCategories = () => {
-        fetch(`${URL}/products/categories`)
-            .then(res => res.json())
-            .then(json => this.categories = json)
+        const categories = this.initialList.map((item: ProductType) => (
+            item.category
+        ))
+        const uniqueCategories = Array.from(new Set(categories))
+        this.categories = uniqueCategories
     }
 
     filterProducts = (category: string|undefined, sort: string|undefined) => {

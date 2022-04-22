@@ -22,7 +22,7 @@ const ProductsCategories = () => {
 
     React.useEffect(() => {
         product.setCategories();
-    }, [])
+    }, [product.initialList])
 
     React.useEffect(() => {
         blockUrls(() => {
@@ -32,7 +32,7 @@ const ProductsCategories = () => {
 
     React.useEffect(() => {
         if(!search.value) product.filterProducts(category.value, sort.value)
-    }, [activeCategory, product.isLoaded])
+    }, [activeCategory, product.isLoading])
 
     return (
         <Radio.Group 
