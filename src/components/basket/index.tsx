@@ -6,10 +6,29 @@ import useModal from '../../hooks/use-modal'
 import basket from '../../store/basket';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
+import product from '../../store/product';
+import { ProductType } from '../../types/product';
 
 const Basket = () => {
     const [isVisible, handleClose] = useModal('/basket');
     const isBasketEmpty = basket.list.length === 0
+
+    React.useEffect(() => {
+        const storageBasketList = JSON.parse(localStorage.getItem('basketList') ?? '')
+
+        const basketItems: ProductType[] = []
+        storageBasketList.forEach((storageItem: {id: number, count: number}) => {
+            const foundItem = product.initialList.find(item => item.id === storageItem.id)
+            if(foundItem){
+                basketItems.push({
+                    ...foundItem, 
+                    count: storageItem.count, 
+                    price: +(foundItem.price * storageItem.count).toFixed(2)})
+            }
+        })
+        
+        basket.setList(basketItems)
+    }, [product.initialList])
 
     return (
         <Drawer 
