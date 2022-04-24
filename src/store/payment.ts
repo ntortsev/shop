@@ -1,6 +1,14 @@
 import { notification } from "antd";
+import { NotificationPlacement } from "antd/lib/notification";
 import { makeAutoObservable } from "mobx";
+import React from "react";
 import basket from "./basket";
+
+type notificationOptionsType = {
+    style: React.CSSProperties,
+    placement: NotificationPlacement,
+    duration: number
+}
 
 class Payment {
     isLoading = false
@@ -17,6 +25,12 @@ class Payment {
         const basketItems = basket.list.map(item => (
             {id: item.id, count: item.count}
         ))
+        const notificationOptions: notificationOptionsType = {
+            style: {backgroundColor: '#f4ffb8'},
+            placement: 'bottomLeft', 
+            duration: 3,
+        }
+
         this.setIsLoading(true)
 
         fetch('https://httpbin.org/post', {
@@ -29,9 +43,8 @@ class Payment {
         })
         .then(() => {
             notification.success({
-                message: 'Product ordered successfully', 
-                placement: 'bottomLeft', 
-                duration: 2.5,
+                message: 'Product ordered successfully',
+                ...notificationOptions
             })
 
             basket.clearBasket()
@@ -40,8 +53,7 @@ class Payment {
             console.error(error)
             notification.error({
                 message: 'There was an error during the order', 
-                placement: 'bottomLeft', 
-                duration: 2.5,
+                ...notificationOptions
             })
         })
         .finally(() => {
