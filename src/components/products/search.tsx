@@ -20,10 +20,8 @@ const ProductsSearch = () => {
     }
 
     const handleSearch = () => {
-        if(!value) return;
-
         blockUrls(() => {
-            navigate(isBtnClear ? '/' : `/products?search=${value}`)
+            navigate(isBtnClear || !value ? '/' : `/products?search=${value}`)
         })
     }
 
