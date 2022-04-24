@@ -14,6 +14,7 @@ const Payment = () => {
     const [isVisible, handleClose] = useModal('/payment');
     const [windowWidth] = useWindowSize();
     const [form] = Form.useForm();
+    const paymentData = JSON.parse(localStorage.getItem('paymentData') ?? '{}')
 
     const handleSubmit = (values: {[option: string]:string}) => {
         payment.fetchFakePayment(values)
@@ -35,11 +36,12 @@ const Payment = () => {
             form={form} 
             onFinish={handleSubmit}
             requiredMark={false}
+            initialValues={paymentData}
             >
                 <PaymentName />
                 <PaymentPhone form={form}/>
                 <PaymentEmail />
-                <PaymentAdress />
+                <PaymentAdress form={form}/>
             </Form>
         </Drawer>
     )

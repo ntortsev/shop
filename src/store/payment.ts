@@ -47,6 +47,7 @@ class Payment {
                 ...notificationOptions
             })
 
+            localStorage.setItem('paymentData', JSON.stringify(values))
             basket.clearBasket()
         })
         .catch(error => {

@@ -1,7 +1,11 @@
-import { Form, Select } from 'antd';
+import { Form, FormInstance, Select } from 'antd';
 import React from 'react'
 import adress from '../../store/adress';
 import { observer } from 'mobx-react-lite';
+
+type Props = {
+    form: FormInstance
+}
 
 type AdressType = {
     value: string,
@@ -12,7 +16,7 @@ type AdressType = {
     }
 }
 
-const PaymentAdress = () => {
+const PaymentAdress: React.FC<Props> = ({form}) => {
     const { Option } = Select;
     const [currAdress, setCurrAdress] = React.useState('')
     const [fiasLevel, setFiasLevel] = React.useState(0)
@@ -34,6 +38,12 @@ const PaymentAdress = () => {
     const getAdressWithoutRegion = (adress: string, region: string) => {
         return adress.split(', ').filter(item => item !== region).join(', ')
     }
+
+    React.useEffect(() => {
+        if(form.getFieldValue(['Adress']).length){
+            setFiasLevel(8)
+        }
+    }, [])
 
     React.useEffect(() => {
         adress.fetchAdressList(currAdress)
