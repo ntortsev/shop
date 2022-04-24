@@ -40,7 +40,7 @@ const PaymentAdress: React.FC<Props> = ({form}) => {
     }
 
     React.useEffect(() => {
-        if(form.getFieldValue(['Adress']).length){
+        if(form.getFieldValue(['Adress'])?.length){
             setFiasLevel(8)
         }
     }, [])
