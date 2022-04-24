@@ -26,7 +26,7 @@ const ProductsItem = ({id, image, title, price, description, count, category}:Pr
             <Card bodyStyle={CardBodyStyles} hoverable>
                 <Img src={image} loading='lazy'/>
                 <Title level={3} style={TitleStyles} >
-                    {title.slice(0,30)}
+                    {title.slice(0,25)}{title.length > 25 && '...'}
                 </Title>
                 <CardBottom>
                     <Price>
