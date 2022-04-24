@@ -7,7 +7,7 @@ const useParams = (params: string[]) => {
     params.forEach(param => {
         const regex = new RegExp(`${param}=([^&]+)`)
         const paramValue = location.search.match(regex)?.[1]
-        result.push({name: param, value: paramValue})
+        result.push({name: param, value: decodeURI(paramValue ?? '')})
     })
 
     return result

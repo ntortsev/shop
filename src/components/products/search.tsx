@@ -1,4 +1,5 @@
-import { Input } from 'antd';
+import { SearchOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { Button, Input } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -12,29 +13,38 @@ const ProductsSearch = () => {
     const [search] = useParams(['search'])
     const location = useLocation()
     const blockUrls = useBlockUrls()
+    const isBtnClear =  !!value && value === search.value
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const currSearch = e.target.value
-        if(/\W/.test(currSearch)) return;
-
-        setValue(currSearch)
+        setValue(e.target.value)
     }
 
     const handleSearch = () => {
+        if(!value) return;
+
         blockUrls(() => {
-            navigate(value ? `/products?search=${value}` : '/')
+            navigate(isBtnClear ? '/' : `/products?search=${value}`)
         })
     }
 
     React.useEffect(() => {
-        setValue(search.value ? search.value : '')
+        setValue(search.value ?? '')
     }, [location])
 
     return (
         <Search 
         style={SearchStyles}
         size='large'
-        enterButton
+        enterButton={
+        <Button 
+        type="primary" 
+        icon={isBtnClear ? <CloseCircleOutlined /> : <SearchOutlined />} 
+        size="large" 
+        danger={isBtnClear}
+        style={SearchBtnStyles}
+        >
+            {isBtnClear ? 'Clear' : 'Search'}
+        </Button>}
         placeholder='Find product'
         onChange={handleChange}
         value={value}
@@ -48,4 +58,8 @@ export default observer(ProductsSearch)
 const SearchStyles: React.CSSProperties = {
     marginBottom: '20px',
     marginTop: '50px',
+}
+
+const SearchBtnStyles: React.CSSProperties = {
+    minWidth: '105px'
 }
