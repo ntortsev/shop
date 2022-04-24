@@ -66,7 +66,8 @@ const Price = styled.div`
 `
 
 const CardBodyStyles: React.CSSProperties = {
-    height: '400px'
+    height: '400px',
+    backgroundColor: '#d6e4ff'
 } 
 
 const TitleStyles: React.CSSProperties = {
