@@ -14,7 +14,7 @@ const Basket = () => {
     const isBasketEmpty = basket.list.length === 0
 
     React.useEffect(() => {
-        const storageBasketList = JSON.parse(localStorage.getItem('basketList') ?? '')
+        const storageBasketList = JSON.parse(localStorage.getItem('basketList') ?? '[]')
 
         const basketItems: ProductType[] = []
         storageBasketList.forEach((storageItem: {id: number, count: number}) => {
