@@ -15,5 +15,6 @@ const EmptyCard: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '400px'
+    height: '400px',
+    backgroundColor: '#d6e4ff'
 }
