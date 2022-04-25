@@ -7,12 +7,14 @@ import ProductsPagination from './pagination'
 import ProductsSearch from './search'
 
 const Products = () => {
+    const pageSize = 8
+
     return (
         <ProductsWrap>
             <ProductsSearch />
             <ProductsFilters />
-            <ProductsList />
-            <ProductsPagination />
+            <ProductsList pageSize={pageSize}/>
+            <ProductsPagination pageSize={pageSize}/>
             <ProductsModal />
         </ProductsWrap>
     )

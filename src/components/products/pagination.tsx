@@ -6,7 +6,11 @@ import useFilters from '../../hooks/use-filters'
 import useParams from '../../hooks/use-params'
 import product from '../../store/product'
 
-const ProductsPagination = () => {
+type Props = {
+    pageSize: number
+}
+
+const ProductsPagination = ({ pageSize }:Props) => {
     const products = product.currList
     const location = useLocation()
     const [activePage, setActivePage] = React.useState(1)
@@ -23,12 +27,12 @@ const ProductsPagination = () => {
     }
     return (
         <Row justify='center'>
-            {products.length > 12 && 
+            {products.length > pageSize && 
             <Pagination 
             current={activePage} 
             total={products.length} 
             onChange={handleChange}
-            pageSize={12}
+            pageSize={pageSize}
             />
             }
         </Row>

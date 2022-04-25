@@ -10,12 +10,15 @@ import { ProductType } from '../../types/product';
 import ProductsEmptyList from './empty-list';
 import ProductsItem from './item';
 
-const ProductsList = () => {
+type Props = {
+    pageSize: number
+}
+
+const ProductsList = ({pageSize}: Props) => {
     const products = product.currList
     const filter = useFilters()
     const blockUrls = useBlockUrls()
     const location = useLocation()
-    const pageSize = 12
     const [ page, search, category, sort ] = useParams(['page', 'search', 'category', 'sort'])
     const [showEnd, setShowEnd] = React.useState(pageSize)
     let showStart = showEnd - pageSize
