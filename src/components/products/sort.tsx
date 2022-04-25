@@ -32,8 +32,14 @@ const ProductsSort = () => {
     }, [activeOption, product.isLoading])
 
     return (
-        <Select dropdownStyle={DropDownStyles} style={SelectWidth} value={activeOption} size='large' onChange={handleChange}>
-            <Option value='none'>None</Option>
+        <Select 
+        dropdownStyle={DropDownStyles} 
+        style={SelectWidth} 
+        value={activeOption} 
+        size='large' 
+        onChange={handleChange}
+        >
+            <Option value='none'>Sort by</Option>
             <Option value='desc'>Descending price</Option>
             <Option value='asc'>Ascending price</Option>
         </Select>
@@ -43,7 +49,8 @@ const ProductsSort = () => {
 export default ProductsSort
 
 const SelectWidth: React.CSSProperties = {
-    minWidth: '165px'
+    minWidth: '165px', 
+    width: '100%'
 }
 
 const DropDownStyles: React.CSSProperties = {
