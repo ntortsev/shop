@@ -15,12 +15,16 @@ const HeaderWrap = () => {
         navigate('/basket')
     }
 
+    const scrollToTop = () => {
+        window.scrollTo(0,0)
+    }
+
     return (
         <Header style={HeaderStyles}>
             <Container>
                 <Row justify="space-between">
                     <Col>
-                        <Link to="/">
+                        <Link to="/" onClick={scrollToTop}>
                             <Logo>Shop</Logo>
                         </Link>
                     </Col>
