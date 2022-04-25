@@ -19,6 +19,7 @@ const ProductsPagination = () => {
 
     const handleChange = (e: number) => {
         filter(e === 1 ? undefined : e.toString(), 'page')
+        window.scrollTo(0,0)
     }
     return (
         <Row justify='center'>
