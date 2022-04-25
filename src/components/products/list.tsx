@@ -53,7 +53,7 @@ const ProductsList = ({pageSize}: Props) => {
                     />
                 ))}
             </ProductsListWrap>
-            : <ProductsEmptyList />
+            : <ProductsEmptyList pageSize={pageSize}/>
             }
         </>
     )

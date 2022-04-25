@@ -6,12 +6,16 @@ import { ProductsListWrap } from './list'
 import ProductsEmptyItem from './empty-item'
 import { observer } from 'mobx-react-lite'
 
-const ProductsEmptyList = () => {
+type Props = {
+    pageSize: number
+}
+
+const ProductsEmptyList = ({pageSize}: Props) => {
     return (
         <>
             {product.isLoading
                 ? <ProductsListWrap>
-                    {new Array(12).fill(0).map((_, index) => <ProductsEmptyItem key={index}/>)}
+                    {new Array(pageSize).fill(0).map((_, index) => <ProductsEmptyItem key={index}/>)}
                 </ProductsListWrap>
                 : <EmptyWrap>
                     <Empty/>
