@@ -2,6 +2,7 @@ import { Form, FormInstance, Select } from 'antd';
 import React from 'react'
 import adress from '../../store/adress';
 import { observer } from 'mobx-react-lite';
+import useDebounce from '../../hooks/use-debounce'
 
 type Props = {
     form: FormInstance
@@ -20,6 +21,7 @@ const PaymentAdress: React.FC<Props> = ({form}) => {
     const { Option } = Select;
     const [currAdress, setCurrAdress] = React.useState('')
     const [fiasLevel, setFiasLevel] = React.useState(0)
+    const debouncedAdress = useDebounce<string>(currAdress)
 
     const handleSelect = (_: string, option: any) => {
         setFiasLevel(+option.fiaslevel)
@@ -46,8 +48,11 @@ const PaymentAdress: React.FC<Props> = ({form}) => {
     }, [])
 
     React.useEffect(() => {
-        adress.fetchAdressList(currAdress)
-    }, [currAdress])
+        if(debouncedAdress){
+            adress.fetchAdressList(debouncedAdress)
+        }
+    }, [debouncedAdress])
+
 
     return (
         <Form.Item label="Adress" name={'Adress'} rules={[{ required: true, validator: checkFiasLevel}]}>
