@@ -1,10 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
-import useBlockUrls from '../../hooks/use-block-urls';
-import useFilters from '../../hooks/use-filters';
-import useParams from '../../hooks/use-params';
 import product from '../../store/product';
 import { ProductType } from '../../types/product';
 import ProductsEmptyList from './empty-list';
@@ -16,10 +12,6 @@ type Props = {
 
 const ProductsList = ({pageSize}: Props) => {
     const products = product.currList
-    const filter = useFilters()
-    const blockUrls = useBlockUrls()
-    const location = useLocation()
-    const [ page, search, category, sort ] = useParams(['page', 'search', 'category', 'sort'])
     const [showEnd, setShowEnd] = React.useState(pageSize)
     let showStart = showEnd - pageSize
 
@@ -28,17 +20,8 @@ const ProductsList = ({pageSize}: Props) => {
     }, [])
 
     React.useEffect(() => {
-        if(products.length < showStart && !product.isLoading){
-            filter(undefined, 'page')
-        }
-    }, [products])
-
-    React.useEffect(() => {
-        blockUrls(() => {
-            setShowEnd(page.value ? pageSize * +page.value : pageSize)
-            if(!sort.value && !category.value) product.searchProducts(search.value)
-        })
-    }, [location, product.isLoading])
+        setShowEnd(pageSize * product.activePage)
+    }, [product.activePage])
 
     return (
         <>

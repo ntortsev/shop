@@ -4,18 +4,20 @@ import styled from 'styled-components'
 import Container from './container'
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import { Header } from 'antd/lib/layout/layout';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import basket from '../store/basket';
+import product from '../store/product';
 import { observer } from 'mobx-react-lite';
 
 const HeaderWrap = () => {
-    const navigate = useNavigate();
-
     const handleClick = () => {
-        navigate('/basket')
+        basket.setIsVisible(true)
     }
 
-    const scrollToTop = () => {
+    const fakeReload = () => {
+        product.searchProducts('')
+        product.setActivePage(1)
+        product.filterProducts('all', 'none')
         window.scrollTo(0,0)
     }
 
@@ -24,7 +26,7 @@ const HeaderWrap = () => {
             <Container>
                 <Row justify="space-between">
                     <Col>
-                        <Link to="/" onClick={scrollToTop}>
+                        <Link to="/" onClick={fakeReload}>
                             <Logo>Shop</Logo>
                         </Link>
                     </Col>

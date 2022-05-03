@@ -11,10 +11,15 @@ type notificationOptionsType = {
 }
 
 class Payment {
-    isLoading = false
+    isLoading: boolean = false
+    isVisible: boolean = false
 
     constructor(){
         makeAutoObservable(this)
+    }
+
+    setIsVisible = (isVisible: boolean) => {
+        this.isVisible = isVisible
     }
 
     setIsLoading = (isLoading: boolean) => {

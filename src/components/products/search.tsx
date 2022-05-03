@@ -2,32 +2,30 @@ import { SearchOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
-import useBlockUrls from '../../hooks/use-block-urls';
-import useParams from '../../hooks/use-params';
+import product from '../../store/product';
 
 const ProductsSearch = () => {
+    const {setActivePage, filterProducts, searchProducts, searchQuery} = product
     const [value, setValue] = React.useState('')
     const { Search } = Input;
-    const navigate = useNavigate()
-    const [search] = useParams(['search'])
-    const location = useLocation()
-    const blockUrls = useBlockUrls()
-    const isBtnClear =  !!value && value === search.value
+    const isBtnClear =  !!value && value === searchQuery
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
 
     const handleSearch = () => {
-        blockUrls(() => {
-            navigate(isBtnClear || !value ? '/' : `/products?search=${value}`)
-        })
+        const newValue = isBtnClear ? '' : value
+
+        setActivePage(1)
+        filterProducts('all', 'none')
+        searchProducts(newValue)
     }
 
     React.useEffect(() => {
-        setValue(search.value ?? '')
-    }, [location])
+        if(!searchQuery) setValue('')
+    }, [searchQuery])
+
 
     return (
         <Search 

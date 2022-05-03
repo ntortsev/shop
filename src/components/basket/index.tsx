@@ -2,7 +2,6 @@ import { Drawer, Empty } from 'antd'
 import React from 'react'
 import BasketItem from './item'
 import DrawerFooter from '../drawer-footer';
-import useModal from '../../hooks/use-modal'
 import basket from '../../store/basket';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
@@ -10,9 +9,12 @@ import product from '../../store/product';
 import { ProductType } from '../../types/product';
 
 const Basket = () => {
-    const [isVisible, handleClose] = useModal('/basket');
     const isBasketEmpty = basket.list.length === 0
-
+    
+    const handleClose = () => {
+        basket.setIsVisible(false)
+    }    
+    
     React.useEffect(() => {
         const storageBasketList = JSON.parse(localStorage.getItem('basketList') ?? '[]')
 
@@ -34,7 +36,7 @@ const Basket = () => {
         <Drawer 
         title="Basket" 
         placement="right" 
-        visible={isVisible}
+        visible={basket.isVisible}
         onClose={handleClose}
         footer={!isBasketEmpty && <DrawerFooter />}
         >

@@ -3,11 +3,15 @@ import { ProductType } from "../types/product"
 
 class Basket {
     list: ProductType[] = []
+    isVisible: boolean = false
 
     constructor(){
         makeAutoObservable(this)
     }
 
+    setIsVisible = (isVisible: boolean) => {
+        this.isVisible = isVisible
+    }
     setStorageList = () => {
         const storageList = this.list.map(product => ({id: product.id, count: product.count}))
         localStorage.setItem('basketList', JSON.stringify(storageList))

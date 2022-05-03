@@ -1,9 +1,9 @@
 import { Button, Col, FormInstance, Row, Typography } from 'antd'
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import basket from '../store/basket'
 import { observer } from 'mobx-react-lite';
+import payment from '../store/payment';
 
 type Props = {
     form?: FormInstance<any>,
@@ -12,13 +12,15 @@ type Props = {
 
 const DrawerFooter = ({form, isButtonLoading}: Props) => {
     const { Title } = Typography;
-    const navigate = useNavigate()
-    const location = useLocation()
     const [totalPrice, setTotalPrice] = React.useState(0)
 
     const handleClick = () => {
-        if(location.pathname === '/basket') navigate('/payment')
-        if(location.pathname === '/payment') form?.submit()
+        if(basket.isVisible){
+            basket.setIsVisible(false)
+            payment.setIsVisible(true)
+        }else{
+            form?.submit()
+        }
     }
 
     React.useEffect(() => {
@@ -26,12 +28,6 @@ const DrawerFooter = ({form, isButtonLoading}: Props) => {
             return +(sum + elem.price).toFixed(2)
         }, 0))
     }, [basket.list])
-
-    React.useEffect(() => {
-        if(location.pathname === '/payment' && !basket.list.length){
-            navigate('/')
-        }
-    },[location.pathname, totalPrice])
 
     return (
         <DrawerFooterWrap>
@@ -48,7 +44,7 @@ const DrawerFooter = ({form, isButtonLoading}: Props) => {
                 </Col>
             </Row>
             <Button type='primary' onClick={handleClick} block size='large' loading={isButtonLoading}>
-                {location.pathname === '/basket' ? 'Go to payment' : 'To order'}
+                {basket.isVisible ? 'Go to payment' : 'To order'}
             </Button>
         </DrawerFooterWrap>
     )
