@@ -33,9 +33,9 @@ const ProductsItem = ({ id, image, title, price, description, count, category }:
       hoverable
       onClick={handleOpen}>
       <Img src={image} loading="lazy" />
-      <Title level={3} style={TitleStyles}>
+      <Title level={4} style={TitleStyles}>
         {title.slice(0, 25)}
-        {title.length > 25 && '...'}
+        {title.length > 27 && '...'}
       </Title>
       <CardBottom>
         <Price>{price} ₽</Price>

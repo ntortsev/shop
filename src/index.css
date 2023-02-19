@@ -1,7 +1,7 @@
-*{
+* {
   box-sizing: border-box;
   scroll-behavior: smooth;
-	font-family: 'Bad Script', cursive;
+  font-family: 'Shantell Sans', cursive;
 }
 body {
   margin: 0;
@@ -11,18 +11,17 @@ body {
 
 /* overflow scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background-color: rgb(205, 205, 205);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(205, 205, 205);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-    background-color: rgb(205, 205, 205);
+  background-color: rgb(205, 205, 205);
 }
-
