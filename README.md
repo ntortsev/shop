@@ -1,6 +1,6 @@
 # Demo
 
-https://teffican.github.io/shop/
+https://ntortsev.github.io/shop/
 
 ## Stack
 
