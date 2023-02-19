@@ -43,7 +43,7 @@ const Payment = () => {
                 <PaymentName />
                 <PaymentPhone form={form}/>
                 <PaymentEmail />
-                <PaymentAdress form={form}/>
+                {/* <PaymentAdress form={form}/> */}
             </Form>
         </Drawer>
     )

@@ -18,7 +18,7 @@ const ProductsPagination = ({ pageSize }:Props) => {
     return (
         <Row justify='center'>
             {products.length > pageSize && 
-            <Pagination 
+            <Pagination
             current={activePage} 
             total={products.length} 
             onChange={handleChange}

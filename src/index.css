@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
   scroll-behavior: smooth;
+	font-family: 'Bad Script', cursive;
 }
 body {
   margin: 0;

@@ -5,6 +5,7 @@ import { Empty } from 'antd'
 import { ProductsListWrap } from './list'
 import ProductsEmptyItem from './empty-item'
 import { observer } from 'mobx-react-lite'
+import {IoSearchOutline} from 'react-icons/io5'
 
 type Props = {
     pageSize: number
@@ -17,9 +18,16 @@ const ProductsEmptyList = ({pageSize}: Props) => {
                 ? <ProductsListWrap>
                     {new Array(pageSize).fill(0).map((_, index) => <ProductsEmptyItem key={index}/>)}
                 </ProductsListWrap>
-                : <EmptyWrap>
-                    <Empty/>
-                </EmptyWrap>
+                : <div
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+									marginTop: '30vh',
+								}}>
+								<IoSearchOutline size={40} />
+								<h1>Товар не найден</h1>
+							</div>
             }
         </>
     )

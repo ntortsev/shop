@@ -4,7 +4,7 @@ import { Card, Spin } from 'antd'
 const ProductsEmptyItem = () => {
     return (
         <Card style={EmptyCard}>
-            <Spin size='large'/>
+            <Spin size='small'/>
         </Card>
     )
 }
@@ -16,5 +16,5 @@ const EmptyCard: React.CSSProperties = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '400px',
-    backgroundColor: '#d6e4ff'
+    backgroundColor: '#fff'
 }

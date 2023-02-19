@@ -18,7 +18,7 @@ const PaymentPhone: React.FC<Props> = ({form}) => {
     }
 
     return (
-        <Form.Item label="Phone" name={'Phone'} rules={[{ required: true, len: 14}]}>
+        <Form.Item label="Номер телефона" name={'Phone'} rules={[{ required: true, len: 14}]}>
             <Input size='large' addonBefore="+7" onChange={handleChange} placeholder="(___)___-__-__"/>
         </Form.Item>
     )

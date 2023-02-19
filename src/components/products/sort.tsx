@@ -20,9 +20,9 @@ const ProductsSort = () => {
         size='large' 
         onChange={handleChange}
         >
-            <Option value='none'>Sort by</Option>
-            <Option value='desc'>Descending price</Option>
-            <Option value='asc'>Ascending price</Option>
+            <Option value='none'>Сортировать</Option>
+            <Option value='desc'>Дороже</Option>
+            <Option value='asc'>Дешевле</Option>
         </Select>
     )
 }
@@ -31,9 +31,14 @@ export default observer(ProductsSort)
 
 const SelectWidth: React.CSSProperties = {
     minWidth: '165px', 
-    width: '100%'
+    width: '100%',
+		borderColor: '#ffcc11',
+		borderRadius: '10px'
+
 }
 
 const DropDownStyles: React.CSSProperties = {
-    zIndex: 10
+    zIndex: 10,
+		borderColor: '#ffcc11',
+		borderRadius: '4px'
 }

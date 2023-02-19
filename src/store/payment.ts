@@ -48,7 +48,7 @@ class Payment {
         })
         .then(() => {
             notification.success({
-                message: 'Product ordered successfully',
+                message: 'Заказ выполнен успешно',
                 ...notificationOptions
             })
 
@@ -58,7 +58,7 @@ class Payment {
         .catch(error => {
             console.error(error)
             notification.error({
-                message: 'There was an error during the order', 
+                message: 'Во время заказа произошла ошибка', 
                 ...notificationOptions
             })
         })

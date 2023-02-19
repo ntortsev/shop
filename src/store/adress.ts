@@ -16,7 +16,7 @@ class Adress {
         this.isLoading = isLoading
     }
     fetchAdressList = (query: string) => {
-        const adressesUrl = process.env.REACT_APP_ADRESSES_URL ?? ''
+        const adressesUrl = 'https://fakestoreapi.com' ?? ''
         const token = process.env.REACT_APP_ADRESSES_TOKEN
         this.setIsLoading(true)
 

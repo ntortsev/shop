@@ -69,7 +69,7 @@ const ProductsModal = () => {
                     onClick={handleClick} 
                     danger={isProductAdded}
                     >
-                        {isProductAdded ? 'Remove' : 'Add to basket'}
+                        {isProductAdded ? 'Убрать из корзины' : 'Добавить в корзину'}
                     </Button>
                 </Card>
             </ModalInner>)
@@ -113,6 +113,8 @@ const CardStyles: React.CSSProperties = {
 const ButtonStyles: React.CSSProperties = {
     position: 'absolute',
     bottom: 0,
-    left: 0
+    left: 0,
+		background: '#ffcc11',
+		borderColor: '#ffcc11'
 }
 

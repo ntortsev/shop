@@ -27,13 +27,13 @@ const HeaderWrap = () => {
                 <Row justify="space-between">
                     <Col>
                         <Link to="/" onClick={fakeReload}>
-                            <Logo>Shop</Logo>
+                            <Logo><img width={180} src="https://flourishing-tartufo-ae4f52.netlify.app/static/media/logo.b2724e805d910e586b8f.png" alt="" /></Logo>
                         </Link>
                     </Col>
                     <Col>
                         <Badge count={basket.list.length} overflowCount={99} offset={[0,35]}>
-                            <Button block size="large" icon={<ShoppingCartOutlined />} onClick={handleClick}>
-                                Basket
+                            <Button style={{background: '#1790fe', color: 'white'}} block size="large" icon={<ShoppingCartOutlined />} onClick={handleClick}>
+                                Корзина
                             </Button>
                         </Badge>
                     </Col>
@@ -46,7 +46,7 @@ const HeaderWrap = () => {
 export default observer(HeaderWrap)
 
 const Logo = styled.div`
-    color: #eee;
+    color: black;
     font-size: 35px;
     font-weight: 700;
     user-select: none;
@@ -57,6 +57,8 @@ const HeaderStyles: React.CSSProperties = {
     position: 'fixed',
     width: '100vw',
     zIndex: 999,
+		background: '#fff',
+		borderBottom: '5px solid #ffcc11',
 }
 
 

@@ -44,12 +44,12 @@ const BasketItem = ({id, title, image, price, count}: ProductType) => {
                 description={
                     <Space wrap>
                         <div>
-                            <Text strong>price:</Text>
-                            <Text keyboard>{price}$</Text>
+                            <Text strong>стоимость:</Text>
+                            <Text keyboard>{price} ₽</Text>
                         </div>
                         <div>
-                            <Text strong>count:</Text>
-                            <Text keyboard>{count}</Text>
+                            <Text strong>количество:</Text>
+                            <Text keyboard>{count} шт.</Text>
                         </div>
                     </Space>
                 }

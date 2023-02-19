@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx"
 import { ProductType } from "../types/product"
 
-const URL = 'https://fakestoreapi.com'
+const URL = 'http://localhost:3003'
 
 class Product {
     initialList: ProductType[] = []

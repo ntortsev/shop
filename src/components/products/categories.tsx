@@ -33,12 +33,12 @@ const ProductsCategories = () => {
         value={activeCategory}
         ref={radioGroup}
         >
-            <RadioButton 
+            <RadioButton
             value='all' 
             onClick={handleClick} 
             radioGroupWidth={radioGroupWidth}
             >
-                All
+                Все	
             </RadioButton>
             {product.categories.map((category: string, index) => (
                 <RadioButton 

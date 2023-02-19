@@ -34,17 +34,17 @@ const DrawerFooter = ({form, isButtonLoading}: Props) => {
             <Row justify='space-between'>
                 <Col>
                     <Title level={3}>
-                    Total price: 
+                    Итоговая цена: 
                     </Title>
                 </Col>
                 <Col>
                     <Title level={3}>
-                    {totalPrice}$
+                    {totalPrice} ₽
                     </Title>
                 </Col>
             </Row>
             <Button type='primary' onClick={handleClick} block size='large' loading={isButtonLoading}>
-                {basket.isVisible ? 'Go to payment' : 'To order'}
+                {basket.isVisible ? 'Перейти к оплате' : 'Оформить заказ'}
             </Button>
         </DrawerFooterWrap>
     )

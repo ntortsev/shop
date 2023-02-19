@@ -39,9 +39,9 @@ const ProductsSearch = () => {
         danger={isBtnClear}
         style={SearchBtnStyles}
         >
-            {isBtnClear ? 'Clear' : 'Search'}
+            {isBtnClear ? 'Отчистить' : 'Найти'}
         </Button>}
-        placeholder='Find product'
+        placeholder='Найти товар'
         onChange={handleChange}
         value={value}
         onSearch={handleSearch}
@@ -54,8 +54,13 @@ export default observer(ProductsSearch)
 const SearchStyles: React.CSSProperties = {
     marginBottom: '20px',
     marginTop: '50px',
+		background: '#ffcc11',
+		borderColor: '#ffcc11'
 }
 
 const SearchBtnStyles: React.CSSProperties = {
-    minWidth: '105px'
+    minWidth: '105px',
+		background: '#ffcc11',
+		borderColor: '#ffcc11',
+		color: 'black'
 }

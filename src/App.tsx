@@ -16,5 +16,6 @@ function App() {
 export default App;
 
 const LayoutStyles = {
-  width: '100vw'
+  width: '100vw',
+	background: '#f8f8f8'
 }

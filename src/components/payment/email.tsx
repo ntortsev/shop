@@ -12,8 +12,8 @@ const PaymentEmail: React.FC<Props> = () => {
         <Form.Item 
         label="Email" 
         name={'Email'} 
-        rules={[{ required: true, pattern: emailRegex, message: 'Wrong Email!'}]}>
-            <Input size='large' placeholder='Your email'/>
+        rules={[{ required: true, pattern: emailRegex, message: 'Некорректный Email!'}]}>
+            <Input size='large' placeholder='Введите ваш email'/>
         </Form.Item>
     )
 }
