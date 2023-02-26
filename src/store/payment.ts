@@ -36,7 +36,7 @@ class Payment {
 
     this.setIsLoading(true);
 
-    fetch('https://httpbin.org/post', {
+    fetch('https://wowshop.free.beeceptor.com/basket', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
