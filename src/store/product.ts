@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import { ProductType } from '../types/product';
 
-const URL = 'http://localhost:3003';
+const URL = 'https://wowshop.free.beeceptor.com';
 
 class Product {
   initialList: ProductType[] = [];

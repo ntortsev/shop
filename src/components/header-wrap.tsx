@@ -30,8 +30,8 @@ const HeaderWrap = () => {
               <Logo>
                 <img
                   width={180}
-                  src="https://flourishing-tartufo-ae4f52.netlify.app/static/media/logo.b2724e805d910e586b8f.png"
-                  alt=""
+                  src="../logo.png"
+                  alt="wowshop"
                 />
               </Logo>
             </Link>
